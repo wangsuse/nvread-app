@@ -1,0 +1,15 @@
+<div class="app-bar">
+  <h2>{{filterName}}</h2>
+</div>
+
+<div class="app-sidebar app-panel">
+  <ol class="stories">
+    {{#each model as |book|}}
+        {{book-card tagName="li" book=book}}
+    {{/each}}
+  </ol>
+</div>
+
+<div class="app-content {{if hasContent 'active'}} ">
+  {{outlet}}
+</div>

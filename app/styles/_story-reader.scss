@@ -1,0 +1,133 @@
+.story-reader {
+
+  overflow: scroll;
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+
+  .story-reader-header > *, .story-reader-content > * {
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .story-reader-header {
+    padding: 1.5em 2em 0em;
+    background: white;
+
+    h2{
+      font-size: 2.1em;
+      margin-left: auto;
+      margin-right: auto;
+      margin-bottom: 1em;
+      margin-top: 1em;
+      font-weight : 900;
+      line-height: 1.5;
+      color:$orange;
+    }
+
+    h4{
+      line-height:1.5
+    }
+
+  }
+
+  .story-reader-content {
+    padding: 2em;
+    img {
+      margin: auto;
+    }
+  }
+
+  .story-reader-content.internal > .comment-card > .metadata {
+    display: none;
+  }
+
+  .story-card {
+    margin-bottom: 2em;
+    padding: 0px;
+    border-left: none;
+    outline: none;
+
+    h3 {
+      font-size: 1.2em;
+      margin: 0.5em 0em;
+    }
+
+    .submitted:before {
+      content: "Submitted "
+    }
+
+    @include media(min-width $medium-screen max-width $large-screen) {
+      h3 {
+        font-size: 1.4em;
+      }
+    }
+
+    @include media(min-width $large-screen) {
+      h3 {
+        font-size: 1.6em;
+      }
+    }
+  }
+
+  .tabbed-links {
+    margin-top: -1em;
+  }
+
+  .error {
+    margin: 100px auto;
+    text-align: center;
+
+    h3 {
+      font-size: 1.1em;
+    }
+
+    p {
+      font-size: 0.9em;
+    }
+  }
+
+  article {
+    margin: 1.5em auto;
+    line-height: 1.6;
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: "Roboto Slab";
+      font-weight: 700;
+      margin-bottom: 1.5em;
+    }
+
+    h1 {
+      font-size: 2em;
+      margin-bottom: 1em;
+    }
+
+    h2 {
+      font-size: 1.2em;
+    }
+
+    h3 {
+      font-size: 1em;
+    }
+
+    p, div > img {
+      margin-bottom: 1.5em;
+    }
+
+    img {
+      display: block;
+    }
+
+    .author {
+      margin: -1em 0 2.5em;
+      font-size: 0.9em;
+      font-style: italic;
+    }
+
+    pre {
+      overflow-x: scroll;
+    }
+  }
+
+}

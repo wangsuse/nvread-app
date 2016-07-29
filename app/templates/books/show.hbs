@@ -1,0 +1,17 @@
+<div class="app-panel story-reader">
+  <div class="story-reader-header">
+    <h2>{{model.sectionTitle}}</h2>
+    <h4> {{model.bookTitle}}</h4>
+    <h4> {{model.author}}</h4>
+  </div>
+
+  <div class="story-reader-content">
+    <div class="content-img">
+      <img src={{model.url}} alt="" >
+    </div>
+    <div class ="story-reader-textbody">
+      {{model.textBody}}
+    </div>
+    {{outlet}}
+  </div>
+</div>

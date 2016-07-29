@@ -1,0 +1,26 @@
+.preferences {
+
+  overflow: scroll;
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+
+  padding: 2em 1em;
+
+  label {
+    font-weight: normal;
+  }
+
+  input[type=text] {
+    background: #FDFDFD;
+  }
+
+  input[type=text]:focus {
+    box-shadow: none;
+  }
+
+  input[type=range] {
+    display: block;
+    width: 100%;
+  }
+}

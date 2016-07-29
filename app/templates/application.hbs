@@ -1,3 +1,40 @@
-<h2 id="title">Welcome to Ember</h2>
+<div class="app-bar">
+  <div class="gutter" {{action "toggleNavBar"}}>
+    <i class="nv-logo {{if showingNavBar 'rotate-cw'}}"></i>
+  </div>
+  
+</div>
 
-{{outlet}}
+<div class="app-bar-shadow"></div>
+
+<nav class="app-nav app-panel" {{action "hideNavBar"}} >
+  {{#link-to "books" (query-params filter="everyday reading") title="Everyday Reading"}}
+    <div class="gutter"><i class="icon-news"></i></div> Everyday Reading
+  {{/link-to}}
+
+  {{#link-to "books" (query-params filter="mostPopularBooks") title="Most Popular Books"}}
+    <div class="gutter"><i class="icon-book"></i></div> Most Popular Books
+  {{/link-to}}
+
+  {{#link-to "books" (query-params filter="booksYouMayLike") title="Books You May Like"}}
+    <div class="gutter"><i class="icon-heart"></i></div> Books You May Like
+  {{/link-to}}
+
+  {{#link-to "books" (query-params filter="user") title="User"}}
+    <div class="gutter"><i class="icon-user"></i></div> User
+  {{/link-to}}
+
+  {{#link-to "books" (query-params filter="about") title="About"}}
+    <div class="gutter"><i class="icon-email"></i></div> About Us
+  {{/link-to}}
+
+  <div class="spacer"></div>
+
+  {{#link-to "books" title="Settings"}}
+    <div class="gutter"><i class="icon-tools"></i></div> Settings
+  {{/link-to}}
+</nav>
+
+<div class="app-main {{ if showingNavBar 'slide-out'}}" {{action "hideNavBar"}} >
+  {{outlet}}
+</div>
