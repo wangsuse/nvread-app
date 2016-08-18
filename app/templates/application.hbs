@@ -5,6 +5,7 @@
     <div class="gutter" {{action "toggleNavBar" bubbles=false}}>
       <i class="nv-logo {{if showingNavBar 'rotate-cw'}}"  title={{t "clickMe"}}></i>
     </div>
+    <span class="logo-wrapper-text">{{t "Niuread"}}</span>
   </div>
 
   {{#link-to "books" (query-params filter="everyday reading") title=model.title.Daily.Recommendation}}

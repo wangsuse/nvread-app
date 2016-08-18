@@ -5,5 +5,6 @@ export default {
   "User.Account" : "我的账户",
   "System.Settings": "设置",
   "About.Us" :"关于我们",
-  "clickMe" :"点我展开"
+  "clickMe" :"点我展开",
+  "Niuread" : "牛读 -- 让你爱上读书"
 };
