@@ -1,37 +1,36 @@
-<div class="app-bar">
-  <div class="gutter" {{action "toggleNavBar"}}>
-    <i class="nv-logo {{if showingNavBar 'rotate-cw'}}"></i>
-  </div>
-  
-</div>
 
-<div class="app-bar-shadow"></div>
 
 <nav class="app-nav app-panel" {{action "hideNavBar"}} >
-  {{#link-to "books" (query-params filter="everyday reading") title="Everyday Reading"}}
-    <div class="gutter"><i class="icon-news"></i></div> Everyday Reading
+  <div class="logo-wrapper">
+    <div class="gutter" {{action "toggleNavBar" bubbles=false}}>
+      <i class="nv-logo {{if showingNavBar 'rotate-cw'}}"  title={{t "clickMe"}}></i>
+    </div>
+  </div>
+
+  {{#link-to "books" (query-params filter="everyday reading") title=model.title.Daily.Recommendation}}
+    <div class="gutter"><i class="icon-news"></i></div> {{t "Daily.Recommendation"}}
   {{/link-to}}
 
-  {{#link-to "books" (query-params filter="mostPopularBooks") title="Most Popular Books"}}
-    <div class="gutter"><i class="icon-book"></i></div> Most Popular Books
+  {{#link-to "books" (query-params filter="mostPopularBooks") title=model.title.Most.PopularBooks}}
+    <div class="gutter"><i class="icon-book"></i></div> {{t "Most.PopularBooks"}}
   {{/link-to}}
 
-  {{#link-to "books" (query-params filter="booksYouMayLike") title="Books You May Like"}}
-    <div class="gutter"><i class="icon-heart"></i></div> Books You May Like
+  {{#link-to "books" (query-params filter="booksYouMayLike") title=model.title.Books.YouMayLike}}
+    <div class="gutter"><i class="icon-heart"></i></div> {{t "Books.YouMayLike"}}
   {{/link-to}}
 
-  {{#link-to "books" (query-params filter="user") title="User"}}
-    <div class="gutter"><i class="icon-user"></i></div> User
+  {{#link-to "books" (query-params filter="user") title=model.title.User.Account}}
+    <div class="gutter"><i class="icon-user"></i></div> {{t "User.Account"}}
   {{/link-to}}
 
-  {{#link-to "books" (query-params filter="about") title="About"}}
-    <div class="gutter"><i class="icon-email"></i></div> About Us
+  {{#link-to "books" (query-params filter="about") title=model.title.About.Us}}
+    <div class="gutter"><i class="icon-email"></i></div> {{t "About.Us"}}
   {{/link-to}}
 
   <div class="spacer"></div>
 
-  {{#link-to "books" title="Settings"}}
-    <div class="gutter"><i class="icon-tools"></i></div> Settings
+  {{#link-to "books" title=model.title.System.Settings}}
+    <div class="gutter"><i class="icon-tools"></i></div> {{t "System.Settings"}}
   {{/link-to}}
 </nav>
 

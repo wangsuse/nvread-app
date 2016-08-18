@@ -73,7 +73,7 @@ export default DS.Adapter.extend({
           });
         });
   },
-  findAll(store, type) {
+  findAll(store, type, sinceToken, snapshotRecordArray) {
     return this.findPagedRecommendations(store, type);
   },
 

@@ -8,6 +8,7 @@
     "bootstrap-sass": "^3.3.6",
     "bourbon": "~4.2.7",
     "entypo-plus": "*",
-    "neat": "^1.8.0"
+    "neat": "^1.8.0",
+    "jquery-ui": "^1.12.0"
   }
 }

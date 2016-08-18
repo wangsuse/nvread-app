@@ -12,8 +12,8 @@
   }
 
   .story-reader-header {
-    padding: 1.5em 2em 0em;
-    background: white;
+    padding: 0em 1.5em 0em;
+    background: lighten($faded, 2.5%);
 
     h2{
       font-size: 2.1em;

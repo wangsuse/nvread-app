@@ -56,7 +56,7 @@ html, body {
 }
 
 .app-panel {
-  @include position(absolute, $app-bar-height 0px 0px 0px);
+  @include position(absolute, 0px 0px 0px 0px);
   overflow: hidden;
   z-index: 1;
 }
@@ -73,7 +73,7 @@ html, body {
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
 
-  padding: 0.5em 0px;
+  padding: 0em 0px;
 
   a {
     display: block;
@@ -95,6 +95,10 @@ html, body {
 
   .spacer {
     flex: 9999;
+  }
+
+  .logo-wrapper{
+    background-color: $green;
   }
 }
 
