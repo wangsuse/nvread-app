@@ -7,6 +7,6 @@
   </ol>
 </div>
 
-<div class="app-content {{if hasContent 'active'}} ">
+<div class="app-content {{if showWelcomeBackground 'welcome-background'}} {{if hasContent 'active'}} ">
   {{outlet}}
 </div>

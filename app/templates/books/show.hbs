@@ -10,7 +10,7 @@
       <img src={{model.url}} alt="" >
     </div>
     <div class ="story-reader-textbody">
-      {{model.textBody}}
+      {{safe-string model.textBody}}
     </div>
     {{outlet}}
   </div>

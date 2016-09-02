@@ -4,7 +4,12 @@ export default Ember.Route.extend({
   queryParams: {
     filter: { refreshModel: true }
   },
+  setupController: function setupController(controller, model) {
 
+      console.log("in books route");
+        // Call _super for default behaviorcontroller
+        this._super(controller, model);
+  },
   model(params) {
     //return null;
     return this.store.findAll('book',params);
@@ -19,11 +24,6 @@ export default Ember.Route.extend({
       tooltipClass: "custom-tooltip-styling",
       hide: { effect: "null"/*, duration: 1000,delay:1000000 */}
     });
-      /*Ember.$( ".app-nav" ).tooltip({
-
-        show: null,
-        tooltipClass: "custom-tooltip-styling",
-        hide: { effect: "null", duration: 1000,delay:1000000 }
-    });*/
+    
   }
 });

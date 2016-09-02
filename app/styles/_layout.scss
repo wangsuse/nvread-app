@@ -102,7 +102,7 @@ html, body {
     font-size: 1.25em;
     color : $white;
     .logo-wrapper-text{
-  
+
     }
   }
 }
@@ -209,6 +209,12 @@ html, body {
 
   @include media(min-width $medium-screen max-width $large-screen) {
     left: $sidebar-narrow-width;
+  }
+
+  &.welcome-background {
+    background-image: url("/image/img_0.png");
+    background-size: cover;
+    background-position: center center;
   }
 }
 

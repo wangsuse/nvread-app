@@ -1,5 +1,12 @@
 .story-reader {
 
+  .story-reader-textbody{
+    font-size: 1.1em;
+    color : black;
+  }
+  .content-img{
+    margin-bottom: 15px;
+  }
   overflow: scroll;
   overflow-x: hidden;
   overflow-y: auto;
