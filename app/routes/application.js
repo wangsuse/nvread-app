@@ -2,6 +2,10 @@ import Ember from 'ember';
 
 export default Ember.Route.extend({
   i18n: Ember.inject.service(),
+  moment: Ember.inject.service(),
+  beforeModel() {
+     this.get('moment').changeLocale('zh-cn');
+  },
   afterModel: function() {
     this.transitionTo('books');
   },

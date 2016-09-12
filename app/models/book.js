@@ -15,4 +15,5 @@ export default DS.Model.extend({
   likeCount : DS.attr('number'),
   machineScore : DS.attr('number'),
   creatorComments : DS.attr('number'),
+  recommendedDate :DS.attr('date')
 });

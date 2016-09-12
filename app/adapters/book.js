@@ -60,7 +60,7 @@ export default DS.Adapter.extend({
               temp.sectionTitle = message[i].bookInfo.sectionTitle;
               temp.url = message[i].bookInfo.imgsUrl != null ? message[i].bookInfo.imgsUrl[0]:null;
               temp.textBody = message[i].bookInfo.textBody;
-              temp.recommendedDate = message[i].bookInfo.recommendedDate;
+              temp.recommendedDate = message[i].recommendedDate*1000;
               //imgsUrl: DS.attr('string'),
               //likeCount : DS.attr('number'),
               //machineScore : DS.attr('number'),
