@@ -1,3 +1,4 @@
+/* global App */
 import Ember from 'ember';
 import ENV from 'nvread-app/config/environment';
 export default Ember.Route.extend({
@@ -9,7 +10,7 @@ export default Ember.Route.extend({
 
   setupController: function(controller, model) {
 
-    App.__container__.lookup('controller:books').set('showWelcomeBackground',false)
+    App.__container__.lookup('controller:books').set('showWelcomeBackground',false);
     if(model.get("textBody") == null){
       Ember.$.ajax({
           type: 'POST',

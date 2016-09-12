@@ -4,8 +4,8 @@ import config from 'nvread-app/config/environment';
 import { isError, parentID } from 'nvread-app/extractors/book';
 
 export default DS.Adapter.extend({
-  proxy: config.APP.HACKERNEWS_CORS_PROXY,
-  host: config.APP.HACKERNEWS_HOST,
+  //proxy: config.APP.HACKERNEWS_CORS_PROXY,
+  //host: config.APP.HACKERNEWS_HOST,
   proxy: null,
   host:  "http://localhost:8080",
   find(store, type, id) {
@@ -34,7 +34,8 @@ export default DS.Adapter.extend({
 
     });
   },
-  findPagedRecommendations (store , type, query = {}){
+  findPagedRecommendations (store , type, query = {} ){
+
     return new Ember.RSVP.Promise( (resolve, reject) => {
         Ember.$.ajax({
             type: 'POST',
@@ -42,7 +43,7 @@ export default DS.Adapter.extend({
             dataType: 'json',
             crossDomain: true,
             data : {
-              pageNumber : 1
+              pageNumber : query.pageNumber == null ? 1 : query.pageNumber
             }
           }).then(function(data) {
             console.log(data);
@@ -59,6 +60,7 @@ export default DS.Adapter.extend({
               temp.sectionTitle = message[i].bookInfo.sectionTitle;
               temp.url = message[i].bookInfo.imgsUrl != null ? message[i].bookInfo.imgsUrl[0]:null;
               temp.textBody = message[i].bookInfo.textBody;
+              temp.recommendedDate = message[i].bookInfo.recommendedDate;
               //imgsUrl: DS.attr('string'),
               //likeCount : DS.attr('number'),
               //machineScore : DS.attr('number'),
@@ -73,8 +75,9 @@ export default DS.Adapter.extend({
           });
         });
   },
-  findAll(store, type, sinceToken, snapshotRecordArray) {
-    return this.findPagedRecommendations(store, type);
+  query(store, type, query, recordArray) {
+
+    return this.findPagedRecommendations(store, type, query);
   },
 
   findQuery(store, type, query = {}) {

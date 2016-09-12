@@ -20,7 +20,10 @@ module.exports = function(defaults) {
   // please specify an object with the list of modules as keys
   // along with the exports of each module as its value.
 
-  //using jquery ui tooltip for left navigation 
+  //using jquery ui tooltip for left navigation
   app.import('bower_components/jquery-ui/jquery-ui.js');
+
+  app.import('vendor/jqueryLoadMask/jquery.loadmask.css');
+    app.import('vendor/jqueryLoadMask/jquery.loadmask.js');
   return app.toTree();
 };
