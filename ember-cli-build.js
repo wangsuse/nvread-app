@@ -22,6 +22,7 @@ module.exports = function(defaults) {
 
   //using jquery ui tooltip for left navigation
   app.import('bower_components/jquery-ui/jquery-ui.js');
+  app.import('bower_components/jquery-ui/themes/base/jquery-ui.css');
 
   app.import('vendor/jqueryLoadMask/jquery.loadmask.css');
     app.import('vendor/jqueryLoadMask/jquery.loadmask.js');

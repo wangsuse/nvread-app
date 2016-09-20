@@ -7,7 +7,7 @@ export default Ember.Route.extend({
      this.get('moment').changeLocale('zh-cn');
   },
   afterModel: function() {
-    this.transitionTo('books');
+    //this.transitionTo('books.home');
   },
   model(params) {
     //return null;

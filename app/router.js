@@ -9,7 +9,8 @@ const Router = Ember.Router.extend({
 Router.map(function() {
   this.route('about');
   this.resource("books", function() {
-    this.route("show", { path: "/:book_id" });
+    this.route("show", { path: "/show/:book_id" });
+    this.route("home");
   });
 
 

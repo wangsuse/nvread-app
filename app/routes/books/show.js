@@ -4,8 +4,8 @@ import ENV from 'nvread-app/config/environment';
 export default Ember.Route.extend({
 
   model(params) {
-    return null;
-    //return this.store.find('book',params);
+    //return null;
+    return this.store.peekRecord('book',params.book_id);
   },
 
   setupController: function(controller, model) {
