@@ -11,7 +11,9 @@ Router.map(function() {
   this.resource("books", function() {
     this.route("show", { path: "/show/:book_id" });
     this.route("home");
+
   });
+
 
 
 });
