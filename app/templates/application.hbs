@@ -8,7 +8,7 @@
     <span class="logo-wrapper-text">{{t "Niuread"}}</span>
   </div>
 
-  {{#link-to "books" (query-params filter="everyday reading") title=model.title.Daily.Recommendation}}
+  {{#link-to "books" (query-params filter="everydayReading") title=model.title.Daily.Recommendation}}
     <div class="gutter"><i class="icon-news"></i></div> {{t "Daily.Recommendation"}}
   {{/link-to}}
 
@@ -16,11 +16,11 @@
     <div class="gutter"><i class="icon-book"></i></div> {{t "Most.PopularBooks"}}
   {{/link-to}}
 
-  {{#link-to "books" (query-params filter="booksYouMayLike") title=model.title.Books.YouMayLike}}
+  {{#link-to "todo" (query-params filter="booksYouMayLike") title=model.title.Books.YouMayLike}}
     <div class="gutter"><i class="icon-heart"></i></div> {{t "Books.YouMayLike"}}
   {{/link-to}}
 
-  {{#link-to "books" (query-params filter="user") title=model.title.User.Account}}
+  {{#link-to "todo" (query-params filter="user") title=model.title.User.Account}}
     <div class="gutter"><i class="icon-user"></i></div> {{t "User.Account"}}
   {{/link-to}}
 
@@ -30,7 +30,7 @@
 
   <div class="spacer"></div>
 
-  {{#link-to "books" title=model.title.System.Settings}}
+  {{#link-to "todo" title=model.title.System.Settings}}
     <div class="gutter"><i class="icon-tools"></i></div> {{t "System.Settings"}}
   {{/link-to}}
 </nav>

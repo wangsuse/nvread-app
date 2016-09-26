@@ -2,12 +2,12 @@ import Ember from 'ember';
 import DS from 'ember-data';
 import config from 'nvread-app/config/environment';
 import { isError, parentID } from 'nvread-app/extractors/book';
-
+import ENV from 'nvread-app/config/environment';
 export default DS.Adapter.extend({
   //proxy: config.APP.HACKERNEWS_CORS_PROXY,
   //host: config.APP.HACKERNEWS_HOST,
   proxy: null,
-  host:  "http://localhost:8080",
+  host:  ENV.apiHost,
   find(store, type, id) {
     return new Ember.RSVP.Promise( (resolve, reject) => {
 

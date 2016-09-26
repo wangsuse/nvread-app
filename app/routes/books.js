@@ -6,7 +6,8 @@ export default Ember.Route.extend({
   queryParams: {
     filter: { refreshModel: true }
   },
-  firstLoad : true,
+  firstLoadEverydayReading : true,
+  firstLoadMostPopularBooks :true,
   setupController: function setupController(controller, model) {
 
       console.log("in books route");
@@ -15,16 +16,43 @@ export default Ember.Route.extend({
   },
 
   beforeModel(transition){
-    if(this.firstLoad){
-      this.firstLoad = false;
-      return this.store.query('book',{ pageNumber: 1 });
+    var filter = this.paramsFor("books").filter;
+    App.__container__.lookup('controller:books').set('showWelcomeBackground',true);
+    switch(filter) {
+        case "everydayReading":
+            if(this.firstLoadEverydayReading){
+                this.firstLoadEverydayReading = false;
+                return this.store.query('book',{ pageNumber: 1 });
+            }
+            break;
+        case "mostPopularBooks":
+            if(this.firstLoadMostPopularBooks){
+                this.firstLoadMostPopularBooks = false;
+                var store = this.store;
+                store.query('popularbook',{ pageNumber: 1}).then(function(value){
+                   return store.query('popularbook',{ pageNumber: 2});
+                });
+            }
+            break;
+        default:
+            break;
     }
     return null;
 
   },
   model(params) {
     //return null;
-    return this.store.peekAll('book');
+    switch(params.filter){
+      case "everydayReading":
+          return this.store.peekAll('book');
+          break;
+      case "mostPopularBooks":
+          return this.store.peekAll('popularbook');
+          break;
+      default:
+          break;
+    }
+
     //
   },
 
@@ -40,7 +68,7 @@ export default Ember.Route.extend({
     });
 
   },
-  bindScrollFlag : false,
+  //bindScrollFlag : false,
   pageNumber: 1,
   actions: {
     refreshModel: function() {
@@ -50,11 +78,12 @@ export default Ember.Route.extend({
        this.refresh();
     },
     didTransition: function() {
-     if(!this.bindScrollFlag ){
-       this.bindScrollFlag = true;
+    // if(!this.bindScrollFlag ){
+    //   this.bindScrollFlag = true;
        var timeoutScroll = null;
-
+       var filter = this.paramsFor("books").filter;
        Ember.run.schedule('afterRender', () => {
+           Ember.$(".app-sidebar").unbind("scroll");
            Ember.$(".app-sidebar").on('scroll', function() {
             clearTimeout(timeoutScroll);
             timeoutScroll=setTimeout(function(){
@@ -63,21 +92,41 @@ export default Ember.Route.extend({
                 console.log("loading additional books");
                 $(".app-main").mask("");
                 var store = App.__container__.lookup('route:books').store;
-                var pageNumber = store.peekAll('book').content.length/10 +1;
-                pageNumber = Math.ceil(pageNumber);
-                var newPromise = store.query('book',{ 'pageNumber': pageNumber });
-                newPromise.then(function(value){
-                  App.__container__.lookup('controller:books').send('refreshModel');
-                  $(".app-main").unmask();
-                //  var books = value;
-                });
+                //check with store
+
+                switch(filter) {
+                    case "everydayReading":
+                        var pageNumber = store.peekAll('book').content.length/10 +1;
+                        pageNumber = Math.ceil(pageNumber);
+                        var newPromise = store.query('book',{ 'pageNumber': pageNumber });
+                        newPromise.then(function(value){
+                          App.__container__.lookup('controller:books').send('refreshModel');
+                          $(".app-main").unmask();
+                        //  var books = value;
+                        });
+                        break;
+                    case "mostPopularBooks":
+                        var pageNumber = store.peekAll('popularbook').content.length/5 +1;
+                        pageNumber = Math.ceil(pageNumber);
+                        var newPromise = store.query('popularbook',{ 'pageNumber': pageNumber });
+                        newPromise.then(function(value){
+                          App.__container__.lookup('controller:books').send('refreshModel');
+                          $(".app-main").unmask();
+                        //  var books = value;
+                        });
+                        break;
+                    default:
+                        break;
+                }
+
+
                 //call book adaptor for additional books
               }
             },500);
          });
 
       });
-     }
+     //}
    }
  }
 });

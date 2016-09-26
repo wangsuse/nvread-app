@@ -10,7 +10,7 @@ export default Ember.Route.extend({
 
   setupController: function(controller, model) {
 
-    App.__container__.lookup('controller:books').set('showWelcomeBackground',false);
+    //App.__container__.lookup('controller:books').set('showWelcomeBackground',false);
     if(model.get("textBody") == null){
       Ember.$.ajax({
           type: 'POST',
@@ -30,5 +30,8 @@ export default Ember.Route.extend({
 
    },
   afterModel() {
+  },
+  beforeModel(){
+    App.__container__.lookup('controller:books').set('showWelcomeBackground', false);
   }
 });

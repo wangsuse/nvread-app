@@ -6,6 +6,7 @@ export default Ember.Controller.extend({
   actions: {
     toggleNavBar: function() {
       this.toggleProperty('showingNavBar');
+      this.transitionToRoute('books.home')
     },
 
     hideNavBar : function(){
