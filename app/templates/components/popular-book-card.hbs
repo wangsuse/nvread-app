@@ -1,6 +1,7 @@
 <a class="wrap-img" ><img src="{{book.url}}"></a>
 <h4> {{book.bookTitle}} · {{moment-to-now book.recommendedDate hidePrefix=true}}前</h4>
-<h3>{{link-to  book.sectionTitle "books.show" book (query-params bookInfoId=book.id ) }}</h3>
+<h3>{{link-to  book.sectionTitle "books.showpopular"  book (query-params bookInfoId=book.id ) }}</h3>
+
 {{#if book.intro}}
   <div class="intro">
     {{book.intro}}

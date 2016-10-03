@@ -8,6 +8,7 @@ export default Ember.Route.extend({
   },
   firstLoadEverydayReading : true,
   firstLoadMostPopularBooks :true,
+
   setupController: function setupController(controller, model) {
 
       console.log("in books route");
@@ -17,16 +18,21 @@ export default Ember.Route.extend({
 
   beforeModel(transition){
     var filter = this.paramsFor("books").filter;
+
     App.__container__.lookup('controller:books').set('showWelcomeBackground',true);
     switch(filter) {
         case "everydayReading":
             if(this.firstLoadEverydayReading){
+                App.__container__.lookup('controller:books').set('everydayReading',true);
+                App.__container__.lookup('controller:books').set('mostPopularBooks',false);
                 this.firstLoadEverydayReading = false;
                 return this.store.query('book',{ pageNumber: 1 });
             }
             break;
         case "mostPopularBooks":
             if(this.firstLoadMostPopularBooks){
+                App.__container__.lookup('controller:books').set('mostPopularBooks',true);
+                App.__container__.lookup('controller:books').set('everydayReading',false);
                 this.firstLoadMostPopularBooks = false;
                 var store = this.store;
                 store.query('popularbook',{ pageNumber: 1}).then(function(value){
@@ -45,10 +51,10 @@ export default Ember.Route.extend({
     switch(params.filter){
       case "everydayReading":
           return this.store.peekAll('book');
-          break;
+          //break;
       case "mostPopularBooks":
           return this.store.peekAll('popularbook');
-          break;
+          //break;
       default:
           break;
     }
@@ -93,12 +99,13 @@ export default Ember.Route.extend({
                 $(".app-main").mask("");
                 var store = App.__container__.lookup('route:books').store;
                 //check with store
-
+                var pageNumber =null;
+                var newPromise =null;
                 switch(filter) {
                     case "everydayReading":
-                        var pageNumber = store.peekAll('book').content.length/10 +1;
+                        pageNumber = store.peekAll('book').content.length/10 +1;
                         pageNumber = Math.ceil(pageNumber);
-                        var newPromise = store.query('book',{ 'pageNumber': pageNumber });
+                        newPromise = store.query('book',{ 'pageNumber': pageNumber });
                         newPromise.then(function(value){
                           App.__container__.lookup('controller:books').send('refreshModel');
                           $(".app-main").unmask();
@@ -106,9 +113,9 @@ export default Ember.Route.extend({
                         });
                         break;
                     case "mostPopularBooks":
-                        var pageNumber = store.peekAll('popularbook').content.length/5 +1;
+                        pageNumber = store.peekAll('popularbook').content.length/5 +1;
                         pageNumber = Math.ceil(pageNumber);
-                        var newPromise = store.query('popularbook',{ 'pageNumber': pageNumber });
+                        newPromise = store.query('popularbook',{ 'pageNumber': pageNumber });
                         newPromise.then(function(value){
                           App.__container__.lookup('controller:books').send('refreshModel');
                           $(".app-main").unmask();

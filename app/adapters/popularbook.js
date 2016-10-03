@@ -8,7 +8,37 @@ export default DS.Adapter.extend({
   //host: config.APP.HACKERNEWS_HOST,
   proxy: null,
   host:  ENV.apiHost,
-
+  findRecord (store, type, id, snapshot){
+    return new Ember.RSVP.Promise( (resolve, reject) => {
+        Ember.$.ajax({
+            type: 'POST',
+            url: ENV.apiHost + '/onebook/book/getSingleBookInfo.form',
+            dataType: 'json',
+            crossDomain: true,
+            data : {
+              'bookInfoId' : id
+            }
+          }).then(function(data) {
+            console.log(data);
+            var message = data.message;
+            var temp = {};
+            temp.id = message.bookInfoId;
+            temp.bookInfoId = message.bookInfoId;
+            temp.bookTitle = message.bookTitle;
+            temp.summary = message.summary;
+            temp.author = message.author;
+            temp.intro = message.intro ? (message.intro.length > 36 ? message.intro.substring(0,36)+'...' : message.intro) : null;
+            temp.sectionTitle = message.sectionTitle;
+            temp.url = message.imgsUrl != null ? message.imgsUrl[0]:null;
+            temp.textBody = message.textBody;
+            Ember.run(null, resolve, temp);
+          }, function(jqXHR) {
+            console.log(jqXHR);
+            jqXHR.then = null; // tame jQuery's ill mannered promises
+            Ember.run(null, reject, jqXHR);
+          });
+        });
+  },
   findHighestReadBooks (store , type, query = {} ){
 
     return new Ember.RSVP.Promise( (resolve, reject) => {

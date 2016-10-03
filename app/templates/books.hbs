@@ -1,9 +1,16 @@
 
 <div class="app-sidebar app-panel">
   <ol class="stories">
-    {{#each model as |book|}}
-        {{book-card tagName="li" book=book}}
-    {{/each}}
+    {{#if everydayReading}}
+      {{#each model as |book|}}
+          {{book-card tagName="li" book=book}}
+      {{/each}}
+    {{/if}}
+    {{#if mostPopularBooks}}
+      {{#each model as |book|}}
+          {{popular-book-card tagName="li" book=book}}
+      {{/each}}
+    {{/if}}
   </ol>
 </div>
 

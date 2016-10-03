@@ -5,7 +5,7 @@ module.exports = function(environment) {
     modulePrefix: 'nvread-app',
     environment: environment,
     baseURL: '/',
-    locationType: 'auto',
+    locationType: 'hash',
     apiHost: '',
     EmberENV: {
       FEATURES: {
@@ -32,6 +32,8 @@ module.exports = function(environment) {
      ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
      ENV.APP.LOG_VIEW_LOOKUPS = true;
      ENV.apiHost =  'http://localhost:8080';
+     ENV.rootURL =  '/onebook/app/dist/';
+     ENV.baseURL =  '/onebook/app/dist/';
   }
 
   if (environment === 'test') {
@@ -49,7 +51,13 @@ module.exports = function(environment) {
     defaultLocale: 'cn'
   };
   if (environment === 'production') {
-
+    ENV.apiHost =  'http://localhost:8080';
+    ENV.APP.LOG_ACTIVE_GENERATION = false;
+    ENV.APP.LOG_TRANSITIONS = false;
+    ENV.APP.LOG_TRANSITIONS_INTERNAL = false;
+    ENV.APP.LOG_VIEW_LOOKUPS = false;
+    ENV.rootURL =  '/onebook/app/dist/';
+    ENV.baseURL =  '/onebook/app/dist/';
   }
 
   return ENV;

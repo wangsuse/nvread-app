@@ -11,6 +11,7 @@ Router.map(function() {
   this.route('todo');
   this.resource("books", function() {
     this.route("show", { path: "/show/:book_id" });
+    this.route("showpopular", { path: "/showpopular/:popularbook_id" });
     this.route("home");
 
   });

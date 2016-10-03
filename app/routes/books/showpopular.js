@@ -5,7 +5,7 @@ export default Ember.Route.extend({
 
   model(params) {
     //return null;
-    return this.store.findRecord('book',params.book_id);
+    return this.store.findRecord('popularbook',params.popularbook_id);
   },
 
   setupController: function(controller, model) {
@@ -16,7 +16,6 @@ export default Ember.Route.extend({
           type: 'POST',
           url: ENV.apiHost + '/onebook/book/getSingleBookInfo.form',
           dataType: 'json',
-
           data : {
             'bookInfoId' : model.get('bookInfoId')
           }
