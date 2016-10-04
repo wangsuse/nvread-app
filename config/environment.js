@@ -21,7 +21,21 @@ module.exports = function(environment) {
 
     moment: {
      includeLocales: true
-   }
+    },
+    'ember-index': {
+       output: 'index.jsp',
+       content: [{
+         key: '1',
+         file: 'example1.txt',
+         includeInIndexHtml: true,
+         includeInOutput: false
+       },{
+         key: '2',
+         file: 'example2.txt',
+         includeInIndexHtml: false,
+         includeInOutput: true
+       }]
+     }
   };
 
 
@@ -51,7 +65,7 @@ module.exports = function(environment) {
     defaultLocale: 'cn'
   };
   if (environment === 'production') {
-    ENV.apiHost =  'http://localhost:8080';
+    ENV.apiHost =  '';
     ENV.APP.LOG_ACTIVE_GENERATION = false;
     ENV.APP.LOG_TRANSITIONS = false;
     ENV.APP.LOG_TRANSITIONS_INTERNAL = false;

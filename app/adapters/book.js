@@ -44,7 +44,7 @@ export default DS.Adapter.extend({
     return new Ember.RSVP.Promise( (resolve, reject) => {
         Ember.$.ajax({
             type: 'POST',
-            url: this.urlForQuery(query),
+            url: ENV.apiHost + "/onebook/book/getMultipleRecommendationBook.form",
             dataType: 'json',
             crossDomain: true,
             data : {
